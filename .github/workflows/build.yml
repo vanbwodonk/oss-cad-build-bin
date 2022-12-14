@@ -20,8 +20,8 @@ jobs:
       - name: Upload package to Release
         uses: ncipollo/release-action@main
         with:
-          tag: v1.0.0
-          artifacts: /github/workspace/*.pkg.tar.zst
+          tag: v2022-12-14
+          artifacts: /*.pkg.tar.zst
           allowUpdates: true
           token: ${{ secrets.GH_TOKEN }}
         
