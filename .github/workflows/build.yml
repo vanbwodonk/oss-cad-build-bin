@@ -21,7 +21,7 @@ jobs:
         uses: ncipollo/release-action@main
         with:
           tag: v2022-12-14
-          artifacts: /*.pkg.tar.zst
+          artifacts: /github/workspace/PKGBUILD/*.pkg.tar.zst
           allowUpdates: true
           token: ${{ secrets.GH_TOKEN }}
         
