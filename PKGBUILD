@@ -9,7 +9,6 @@ pkgdesc="Nightly builds of open-source FPGA tools"
 arch=('x86_64' 'arm' 'aarch64')
 url="https://github.com/YosysHQ/oss-cad-suite-build"
 license=('custom')
-depends=('python' 'bash' 'rsync')
 
 source=(path.install)
 source_x86_64=($url/releases/download/$_pkgver/oss-cad-suite-linux-x64-$pkgver.tgz)
