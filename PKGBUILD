@@ -19,7 +19,6 @@ sha256sums=('SKIP')
 sha256sums_x86_64=('SKIP')
 sha256sums_arm=('SKIP')
 sha256sums_aarch64=('SKIP')
-install='path.install'
 
 replaces=('fpga-toolchain-bin')
 
