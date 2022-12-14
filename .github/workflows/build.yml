@@ -1,0 +1,2 @@
+- name: Arch Linux's package action
+  uses: hapakaien/archlinux-package-action@v2.2.0
