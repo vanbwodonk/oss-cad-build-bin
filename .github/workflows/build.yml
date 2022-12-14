@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: main
-    tags:
-    - '*'
 
 jobs:
   build:
@@ -21,6 +19,7 @@ jobs:
       - name: Upload package to Release
         uses: ncipollo/release-action@main
         with:
+          tag: ${{ steps.compile.outputs.build_tag }}
           artifacts: /github/workspace/*.pkg.tar.zst
           allowUpdates: true
           token: ${{ secrets.GH_TOKEN }}
