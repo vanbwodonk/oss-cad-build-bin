@@ -24,5 +24,7 @@ replaces=('fpga-toolchain-bin')
 package() {
     cp -r "$srcdir/oss-cad-suite" "$pkgdir/opt/"
     mkdir -p "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
+    pwd
+    chmod -R 755 "$pkgdir/opt/"
     cp -i "$srcdir/oss-cad-suite/license/"* "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
 }
