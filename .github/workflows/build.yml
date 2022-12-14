@@ -14,3 +14,10 @@ jobs:
       - name: Validate package
         uses: hapakaien/archlinux-package-action@v2
         
+      - name: Upload package to Release
+        uses: ncipollo/release-action@main
+        with:
+          artifacts: /*.pkg.tar.zst
+          allowUpdates: true
+          token: ${{ secrets.GH_TOKEN }}
+        
