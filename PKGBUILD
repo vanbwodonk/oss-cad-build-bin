@@ -21,7 +21,8 @@ sha256sums_x86_64=('80f992bc58ab82b9854838cb1443bece8fc2306b02e99e807b2d979b0ac5
 replaces=('fpga-toolchain-bin')
 
 package() {
-    rsync -a "$srcdir/oss-cad-suite" "$pkgdir/opt/" --chmod=755 --exclude README --exclude license
+    cp -r "$srcdir/oss-cad-suite" "$pkgdir/opt/"
+    chmod 755 "$pkgdir/opt/oss-cad-suite"
     mkdir -p "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
-    cp "$srcdir/oss-cad-suite/license/"* "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
+    cp -i "$srcdir/oss-cad-suite/license/"* "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
 }
