@@ -16,12 +16,17 @@ jobs:
 
       - name: Validate package
         uses: hapakaien/archlinux-package-action@v2
+        with:
+          path: package
+          flags: '-s --noconfirm'
+          namcap: false
         
       - name: Upload package to Release
         uses: ncipollo/release-action@main
         with:
-          tag: v2022-12-14
-          artifacts: /home/builder/gh-action/*.pkg.tar.zst
+          tag: v${{ steps.branch-name.outputs.tag }}
+          name: v${{ steps.branch-name.outputs.tag }}
+          body: ${{ steps.changelog-reader.outputs.changes }}
           allowUpdates: true
           token: ${{ secrets.GH_TOKEN }}
         
