@@ -17,7 +17,6 @@ jobs:
       - name: Validate package
         uses: hapakaien/archlinux-package-action@v2
         with:
-          path: package
           flags: '-s --noconfirm'
           namcap: false
         
