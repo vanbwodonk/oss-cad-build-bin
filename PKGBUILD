@@ -14,7 +14,8 @@ source_x86_64=($url/releases/download/$_pkgver/oss-cad-suite-linux-x64-$pkgver.t
 #source_arm=($url/releases/download/$_pkgver/oss-cad-suite-linux-arm-$pkgver.tgz)
 #source_aarch64=($url/releases/download/$_pkgver/oss-cad-suite-linux-arm64-$pkgver.tgz)
 #sha256sums=('SKIP')
-sha256sums_x86_64=('80f992bc58ab82b9854838cb1443bece8fc2306b02e99e807b2d979b0ac53c60')
+#sha256sums_x86_64=('80f992bc58ab82b9854838cb1443bece8fc2306b02e99e807b2d979b0ac53c60')
+sha256sums_x86_64=('SKIP')
 #sha256sums_arm=('SKIP')
 #sha256sums_aarch64=('SKIP')
 
@@ -22,7 +23,6 @@ replaces=('fpga-toolchain-bin')
 
 package() {
     cp -r "$srcdir/oss-cad-suite" "$pkgdir/opt/"
-    chmod 755 "$pkgdir/opt/oss-cad-suite"
     mkdir -p "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
     cp -i "$srcdir/oss-cad-suite/license/"* "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
 }
