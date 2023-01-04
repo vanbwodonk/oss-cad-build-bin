@@ -6,18 +6,20 @@ _pkgver=2023-01-04
 pkgver=${_pkgver//-/}
 pkgrel=1
 pkgdesc="Nightly builds of open-source FPGA tools"
-arch=('x86_64' 'arm' 'aarch64')
+arch=('x86_64')
 url="https://github.com/YosysHQ/oss-cad-suite-build"
 license=('custom')
+depends=('python' 'bash' 'rsync')
 
+source=(path.install)
 source_x86_64=($url/releases/download/$_pkgver/oss-cad-suite-linux-x64-$pkgver.tgz)
 sha256sums_x86_64=('SKIP')
+install='path.install'
 
 replaces=('fpga-toolchain-bin')
 
 package() {
-    cp -r "$srcdir/oss-cad-suite" "$pkgdir/opt/"
+    rsync -a "$srcdir/oss-cad-suite" "$pkgdir/opt/" --chmod=755 --exclude README --exclude license
     mkdir -p "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
-    chmod -R 755 "$pkgdir/opt/oss-cad-suite"
-    cp -i "$srcdir/oss-cad-suite/license/"* "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
+    cp "$srcdir/oss-cad-suite/license/"* "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
 }
