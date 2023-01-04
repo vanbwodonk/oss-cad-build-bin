@@ -6,18 +6,35 @@ on:
     - '*'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  buildNonAUR:
+    strategy:
+      matrix:
+        PKGBUILDs: [oss-cad-suite-build-bin]
 
-      - name: Validate package
-        uses: hapakaien/archlinux-package-action@v2
-        
-      - name: Upload package to Release
-        uses: ncipollo/release-action@main
+      fail-fast: false
+      
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build Non-AUR packages
+        id: makepkg
+        uses: ./build-nonaur-action
+        with:
+          pkgdir: ${{ matrix.PKGBUILDs }}
+          aurDeps: true
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./*/*.pkg.tar.zst
+          name: ${{ matrix.PKGBUILDs }}
+          if-no-files-found: error
+      
+      - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
+          tag: "packages"
+          artifacts: ${{ steps.makepkg.outputs.pkgfile0 }}
           token: ${{ secrets.GH_TOKEN }}
         
