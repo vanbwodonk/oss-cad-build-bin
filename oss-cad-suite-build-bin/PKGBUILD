@@ -13,6 +13,7 @@ depends=('python' 'bash' 'rsync')
 
 source=(path.install)
 source_x86_64=($url/releases/download/$_pkgver/oss-cad-suite-linux-x64-$pkgver.tgz)
+sha256sums=('SKIP')
 sha256sums_x86_64=('SKIP')
 install='path.install'
 
