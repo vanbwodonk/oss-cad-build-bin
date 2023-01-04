@@ -1,0 +1,26 @@
+# Maintainer: Michael Riegert <michael at eowyn net>
+# Maintainer: Scott Shawcroft <scott at tannewt dot org>
+
+pkgname=oss-cad-suite-build-bin
+_pkgver=2023-01-04
+pkgver=${_pkgver//-/}
+pkgrel=1
+pkgdesc="Nightly builds of open-source FPGA tools"
+arch=('arm')
+url="https://github.com/YosysHQ/oss-cad-suite-build"
+license=('custom')
+depends=('python' 'bash' 'rsync')
+
+source=(path.install)
+source_arm=($url/releases/download/$_pkgver/oss-cad-suite-linux-arm-$pkgver.tgz)
+sha256sums=('SKIP')
+sha256sums_arm=('SKIP')
+install='path.install'
+
+replaces=('fpga-toolchain-bin')
+
+package() {
+    rsync -a "$srcdir/oss-cad-suite" "$pkgdir/opt/" --chmod=755 --exclude README --exclude license
+    mkdir -p "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
+    cp "$srcdir/oss-cad-suite/license/"* "$pkgdir/usr/share/licenses/oss-cad-suite-build/"
+}

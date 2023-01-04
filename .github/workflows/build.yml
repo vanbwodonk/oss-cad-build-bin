@@ -9,7 +9,7 @@ jobs:
   buildNonAUR:
     strategy:
       matrix:
-        PKGBUILDs: [oss-cad-suite-build-bin]
+        PKGBUILDs: [oss-cad-suite-x86_64, oss-cad-suite-aarch64, oss-cad-suite-arm]
 
       fail-fast: false
       
@@ -34,7 +34,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          tag: "packages"
+          tag: "Packages"
           artifacts: ${{ steps.makepkg.outputs.pkgfile0 }}
           token: ${{ secrets.GH_TOKEN }}
         
