@@ -1,4 +1,5 @@
-FROM lopsided/archlinux-arm64v8
+ARG ARCH=arm64v8
+FROM lopsided/archlinux-$ARCH
 
 WORKDIR /archlinux
 
@@ -14,7 +15,7 @@ RUN ./pacstrap-docker /archlinux/rootfs \
     rm rootfs/var/lib/pacman/sync/*
 
 FROM scratch
-ARG ARCH=amd64
+ARG ARCH=arm64v8
 
 COPY --from=0 /archlinux/rootfs/ /
 COPY rootfs/common/ /
