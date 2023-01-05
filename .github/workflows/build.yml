@@ -6,10 +6,10 @@ on:
     - '*'
 
 jobs:
-  buildNonAUR:
+  build_x86_64:
     strategy:
       matrix:
-        PKGBUILDs: [oss-cad-suite-x86_64]
+        PKGBUILDs: [oss-cad-suite-build-bin]
 
       fail-fast: false
       
@@ -20,7 +20,7 @@ jobs:
 
       - name: Build Non-AUR packages
         id: makepkg
-        uses: ./build-nonaur-action
+        uses: ./build-x86_64
         with:
           pkgdir: ${{ matrix.PKGBUILDs }}
           aurDeps: true
@@ -37,10 +37,10 @@ jobs:
           artifacts: ${{ steps.makepkg.outputs.pkgfile0 }}
           token: ${{ secrets.GH_TOKEN }}
 
-  buildaarch64:
+  build_aarch64:
     strategy:
       matrix:
-        PKGBUILDs: [oss-cad-suite-aarch64]
+        PKGBUILDs: [oss-cad-suite-build-bin]
 
       fail-fast: false
       
